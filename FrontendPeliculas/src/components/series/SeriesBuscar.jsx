@@ -1,5 +1,11 @@
 import React from "react";
 export default function SeriesBuscar ({Nombre, setNombre, Buscar, Agregar}) {
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();  // Evitar la recarga de la página por defecto del formulario
+      Buscar(1);
+    }
+  };
 
     return (
     <form name="FormBusqueda">
@@ -15,6 +21,7 @@ export default function SeriesBuscar ({Nombre, setNombre, Buscar, Agregar}) {
               onChange={(e) => setNombre(e.target.value)}
               value={Nombre}
               maxLength="55"
+              onKeyPress={handleKeyPress}
               autoFocus
             />
           </div>

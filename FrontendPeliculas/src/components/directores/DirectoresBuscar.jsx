@@ -1,7 +1,14 @@
 import React from "react";
-export default function DirectoresBuscar ({Nombre, setNombre, Buscar, Agregar}) {
 
-    return (
+const DirectoresBuscar = ({ Nombre, setNombre, Buscar, Agregar }) => {
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();  // Evitar la recarga de la página por defecto del formulario
+      Buscar(1);
+    }
+  };
+
+  return (
     <form name="FormBusqueda">
       <div className="container-fluid">
         <div className="row">
@@ -16,6 +23,7 @@ export default function DirectoresBuscar ({Nombre, setNombre, Buscar, Agregar}) 
               value={Nombre}
               maxLength="55"
               autoFocus
+              onKeyPress={handleKeyPress}
             />
           </div>
         </div>
@@ -23,23 +31,25 @@ export default function DirectoresBuscar ({Nombre, setNombre, Buscar, Agregar}) 
         {/* Botones */}
         <div className="row">
           <div className="col text-center botones">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => Buscar(1) }
-          >
-            <i className="fa fa-search"> </i> Buscar
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => Agregar() }
-          >
-            <i className="fa fa-plus"> </i> Agregar
-          </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => Buscar(1)}
+            >
+              <i className="fa fa-search"> </i> Buscar
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => Agregar()}
+            >
+              <i className="fa fa-plus"> </i> Agregar
+            </button>
           </div>
         </div>
       </div>
     </form>
-    )
-  };
+  );
+};
+
+export default DirectoresBuscar;
